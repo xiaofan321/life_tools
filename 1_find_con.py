@@ -9,21 +9,22 @@ def main(path,con):
             try:
                 with open(filename,"rb") as f:
                     data = f.read()
-                    coding = chardet.detect(data[:100 if (len(data))>100 else len(data)])['encoding']
-                    # print(coding)
-                    data = data.decode(encoding=coding if coding else 'utf-8')
-
+                    # coding = chardet.detect(data[:100 if (len(data))>100 else len(data)])['encoding']
+                    # data = data.decode(encoding=coding if coding else 'utf-8')
+                    data = str(data)
                     if data.find(con) != -1:
                         print(filename)
             except UnicodeDecodeError as e:
-                # print('解码异常'+filename)
+                print('解码异常'+filename)
+                print(e)
                 pass
             except Exception as e:
-                # print(e+filename)
+                print(e+filename)
                 pass
+
     print("find finsh")
 
 if __name__ == "__main__":
-    path = r"E:\\test"
-    con = "你好"
+    path = r"test"
+    con = "test"
     main(path,con)
